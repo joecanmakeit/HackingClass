@@ -5,18 +5,18 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class WorldTwo extends MyWorldBase {
+public class CustomWorld extends MyWorldBase {
 
 	@Override
 	protected int customID() {
-		return MyMod.worldTwoID;
+		return MyMod.customWorldID;
 	}
 
 	@Override
 	protected BiomeGenBase[] customBiomes() {
 		BiomeGenBase[] biomes = {
-				MyMod.sparce,
-				BiomeGenBase.ocean
+				MyMod.customBiome,
+				BiomeGenBase.frozenOcean
 		};
 		return biomes;
 	}
@@ -28,17 +28,17 @@ public class WorldTwo extends MyWorldBase {
 
 	@Override
 	protected String customSkyColor() {
-		return "#CCDDCC";
+		return "#0B60B5";
 	}
 
 	@Override
 	protected String customFogColor() {
-		return "#003300";
+		return "#00264D";
 	}
 
 	@Override
 	protected String customSunriseSunsetColor() {
-		return "#00FF33";
+		return "#BAF0FF";
 	}
 
 	@Override
@@ -48,12 +48,12 @@ public class WorldTwo extends MyWorldBase {
 
 	@Override
 	protected String customCloudColor() {
-		return "#00BBFF";
+		return "#BCC1C2";
 	}
 
 	@Override
 	protected Block getBaseBlock() {
-		return Blocks.diamond_block;
+		return Blocks.stone;
 	}
 
 }

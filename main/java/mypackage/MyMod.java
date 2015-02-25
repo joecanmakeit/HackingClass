@@ -63,10 +63,10 @@ public class MyMod {
 	public static MyThrowableItem makersThrowable = new MyThrowableItem(CreativeTabs.tabMisc);
 	
 	// BIOMES AND DIMENSIONS
-	public static int worldTwoID = 6;
+	public static int customWorldID = 2;
 	public static MyTeleporterItem tpHome = new MyTeleporterItem(0);
-	public static MyTeleporterItem tpTwo = new MyTeleporterItem(worldTwoID);
-	public static final MyBiomeGenBase sparce = new BiomeSparce(50, Blocks.diamond_block);
+	public static MyTeleporterItem tpCustom = new MyTeleporterItem(customWorldID);
+	public static CustomBiome customBiome = new CustomBiome(50, Blocks.stone);
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -85,13 +85,10 @@ public class MyMod {
 		// POTION EFFECTS FOR FOOD
 		
 		// BUILD DIMENSIONS
-		buildDimension(worldTwoID, WorldTwo.class);
+		buildDimension(customWorldID, CustomWorld.class);
 		
-		// REGISTRATIONgmail
+		// REGISTRATION
 		registerEverything();
-		
-		// BIOME
-		BiomeDictionary.registerBiomeType(sparce, BiomeDictionary.Type.PLAINS);
 	}
 
 	@EventHandler
@@ -135,7 +132,12 @@ public class MyMod {
 		Field f;
 		while (true) {
 			f = MyMod.class.getDeclaredFields()[MyMod.varCount++];
-			if (f.getType() != int.class && f.getType() != String.class) break;
+			Class c = f.getType();
+			if (	c == MyAxe.class || c == MyBoots.class || c == MyChestplate.class || 
+					c == MyFood.class || c == MyHelmet.class || c == MyHoe.class || 
+					c == MyItem.class || c == MyLeggings.class || c == MyPickaxe.class || 
+					c == MySpade.class || c == MySword.class || c == MyThrowableItem.class || 
+					c == MyTeleporterItem.class || c == MyBlock.class) break;
 		}
 		return f.getName();
 	}

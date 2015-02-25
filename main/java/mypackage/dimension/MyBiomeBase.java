@@ -9,15 +9,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class MyBiomeGenBase extends BiomeGenBase {
+public class MyBiomeBase extends BiomeGenBase {
 
 	public Block baseBlock = Blocks.stone;
 	
-	public MyBiomeGenBase(int p_i1971_1_) {
+	public MyBiomeBase(int p_i1971_1_) {
 		this(p_i1971_1_, Blocks.stone);
 	}
 	
-	public MyBiomeGenBase(int i, Block base) {
+	public MyBiomeBase(int i, Block base) {
 		super(i);
 		baseBlock = base;
 		this.theBiomeDecorator = new MyBiomeDecorator(baseBlock);

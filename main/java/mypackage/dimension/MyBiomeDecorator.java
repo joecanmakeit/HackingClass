@@ -73,16 +73,16 @@ public class MyBiomeDecorator extends BiomeDecorator {
 
     	// DECORATIONS
         this.treesPerChunk = 2;
-        this.flowersPerChunk = 20;
+        this.flowersPerChunk = 3;
         this.grassPerChunk = 3;
-        this.mushroomsPerChunk = 64;
-        this.bigMushroomsPerChunk = 16;
+        this.mushroomsPerChunk = 1;
+        this.bigMushroomsPerChunk = 0;
         this.deadBushPerChunk = 3;
         this.cactiPerChunk = 2;
         this.reedsPerChunk = 5;
         this.waterlilyPerChunk = 4;
-        this.underwaterSandPerChunk = 8;
-        this.underwaterGravelPerChunk = 0;
+        this.underwaterSandPerChunk = 3;
+        this.underwaterGravelPerChunk = 1;
         this.clayPerChunk = 1;
 
         this.generateLakes = true;
@@ -360,6 +360,14 @@ public class MyBiomeDecorator extends BiomeDecorator {
     
     public void addOreSpawn(Block ore, int size, int freq, int min, int max, Block base, OreGenEvent.GenerateMinable.EventType type) {
     	this.oreGenList.add(new Ore(ore, size, freq, min, max, base, type));
+    }
+    
+    public void removeOreSpawn(Block ore) {
+    	Ore target = null;
+    	for (Ore o : this.oreGenList) {
+    		if (o.ore == ore) target = o;
+    	}
+    	this.oreGenList.remove(target);
     }
     
     
