@@ -32,9 +32,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class CustomBiome extends MyBiomeBase {
+public class MakersBiome extends MyBiomeBase {
 
-	public CustomBiome(int i, Block base) {
+	public MakersBiome(int i, Block base) {
 		super(i, base);
 		MyBiomeDecorator decorator = (MyBiomeDecorator)this.theBiomeDecorator;
 		this.spawnableMonsterList = new ArrayList();

@@ -4,11 +4,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.Item.ToolMaterial;
 
-public class MySpade extends ItemSpade {
+public class MyShovel extends ItemSpade {
 	
 	String name;
 	
-	public MySpade(ToolMaterial material) {
+	public MyShovel(ToolMaterial material) {
 		super(material);
 		this.name = MyMod.getNextName();
 		this.setUnlocalizedName(this.name);

@@ -5,17 +5,22 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class CustomWorld extends MyWorldBase {
+public class MakersWorld extends MyWorldBase {
+
+	@Override
+	public String customName() {
+		return "Makers World";
+	}
 
 	@Override
 	protected int customID() {
-		return MyMod.customWorldID;
+		return MyMod.makersWorldID;
 	}
 
 	@Override
 	protected BiomeGenBase[] customBiomes() {
 		BiomeGenBase[] biomes = {
-				MyMod.theCustomBiome
+				MyMod.theMakersBiome
 		};
 		return biomes;
 	}

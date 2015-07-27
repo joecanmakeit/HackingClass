@@ -26,14 +26,15 @@ public abstract class MyWorldBase extends WorldProvider {
 		this.worldObj.getWorldInfo().setTerrainType(WorldType.FLAT);
 		this.worldChunkMgr = new MyWorldChunkManager(worldObj.getSeed(), WorldType.FLAT, this.customBiomes(), this.customBiomeSize());
 	}
-
+	
 	@Override
 	public String getDimensionName() {
-		return "World One";
+		return customName();
 	}
 	
 	// CUSTOMIZATION STUFF
 	
+	public abstract String customName();
 	protected abstract int customID();
 	protected abstract BiomeGenBase[] customBiomes();
 	protected abstract String customSkyColor();

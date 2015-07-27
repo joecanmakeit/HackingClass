@@ -47,8 +47,15 @@ public class MyMod {
 	public static MyMod instance;
 	@SidedProxy(clientSide="mymod.client.ClientProxy", serverSide="mymod.CommonProxy")
 	public static CommonProxy proxy;
+	
+	//  TEXTURE NAMES
+	//  newItemTexture		TO MAKE A NEW TEXTURE,
+	//  newBlockTexture		HIGHLIGHT ONE OF THE TEXTURE NAMES TO THE RIGHT,
+	//  newArmorTexture		THEN PRESS CTRL + SHIFT + R
 
 	// MATERIALS
+	public static ToolMaterial makersTool = addToolMaterial(2, 500, 7.0F, 2.0F, 23);
+	public static ArmorMaterial makersArmor = addArmorMaterial(18, new int[] {3, 7, 6, 3}, 23);
 	
 	// NEW ITEMS
 	public static MyItem makersIngot = new MyItem(CreativeTabs.tabMaterials);
@@ -58,15 +65,28 @@ public class MyMod {
 	public static MyBlock makersOre = new MyBlock(CreativeTabs.tabBlock, Material.rock);
 	public static MyBlock makersBlock = new MyBlock(CreativeTabs.tabBlock, Material.iron);
 	
+	// NEW TOOLS
+	public static MyPickaxe makersPickaxe = new MyPickaxe(makersTool);
+	public static MyShovel makersShovel = new MyShovel(makersTool);
+	public static MyAxe makersAxe = new MyAxe(makersTool);
+	public static MySword makersSword = new MySword(makersTool);
+	public static MyHoe makersHoe = new MyHoe(makersTool);
+	
+	// NEW ARMOR
+	public static MyHelmet makersHelmet = new MyHelmet(makersArmor);
+	public static MyChestplate makersChestplate = new MyChestplate(makersArmor);
+	public static MyLeggings makersLeggings = new MyLeggings(makersArmor);
+	public static MyBoots makersBoots = new MyBoots(makersArmor);
+	
 	// NEW THROWABLE
 	public static MyThrowableItem makersThrowable = new MyThrowableItem(CreativeTabs.tabMisc);
 	
 	// BIOMES AND DIMENSIONS
 	public static int biomeID = 50;
-	public static int customWorldID = 2;
 	public static MyTeleporterItem tpHome = new MyTeleporterItem(0);
-	public static MyTeleporterItem tpCustom = new MyTeleporterItem(customWorldID);
-	public static CustomBiome theCustomBiome = new CustomBiome(biomeID++, Blocks.stone);
+	public static int makersWorldID = 2;
+	public static MyTeleporterItem tpMakers = new MyTeleporterItem(makersWorldID);
+	public static MakersBiome theMakersBiome = new MakersBiome(biomeID++, Blocks.stone);
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -85,7 +105,7 @@ public class MyMod {
 		// POTION EFFECTS FOR FOOD
 		
 		// BUILD DIMENSIONS
-		buildDimension(customWorldID, CustomWorld.class);
+		buildDimension(makersWorldID, MakersWorld.class);
 		
 		// REGISTRATION
 		registerEverything();
@@ -94,18 +114,16 @@ public class MyMod {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
-		
-		GameRegistry.registerWorldGenerator(new MyGenerator(), 1000);
-		
+				
 		// CRAFTING AND SMELTING RECIPES
-		MyRecipes.setSymbol("i", makersIngot);
 		MyRecipes.setSymbol("b", makersBlock);
 		MyRecipes.setSymbol("o", makersOre);
-		MyRecipes.setSymbol("t", makersThrowable);
 		MyRecipes.setSymbol("g", Items.gunpowder);
+		MyRecipes.setSymbol("t", makersThrowable);
+		MyRecipes.setSymbol("i", makersIngot);
 		
-		MyRecipes.addShapedRecipe("o", 1, "iii", "iii", "iii");
-		MyRecipes.addShapedRecipe("t", 4, " a ", "aba", " a ");
+		MyRecipes.addShapedRecipe("b", 1, "iii", "iii", "iii");
+		MyRecipes.addShapedRecipe("t", 4, " i ", "igi", " i ");
 		MyRecipes.addShapelessRecipe("i", 9, "b");
 		MyRecipes.addSmeltingRecipe("i", 1, "o", 1.0F);
 	}
@@ -132,7 +150,7 @@ public class MyMod {
 			if (	c == MyAxe.class || c == MyBoots.class || c == MyChestplate.class || 
 					c == MyFood.class || c == MyHelmet.class || c == MyHoe.class || 
 					c == MyItem.class || c == MyLeggings.class || c == MyPickaxe.class || 
-					c == MySpade.class || c == MySword.class || c == MyThrowableItem.class || 
+					c == MyShovel.class || c == MySword.class || c == MyThrowableItem.class || 
 					c == MyTeleporterItem.class || c == MyBlock.class) break;
 		}
 		return f.getName();
@@ -143,13 +161,14 @@ public class MyMod {
 		FMLCommonHandler.instance().bus().register(new MyWorldEvents());
 		int entityID = 0;
 		EntityRegistry.registerModEntity(MyThrowableEntity.class, "MyThrowableEntity", EntityRegistry.findGlobalUniqueEntityId(), this, 80, 1, true);
+		GameRegistry.registerWorldGenerator(new MyGenerator(), 1000);
 		try {
 			for (Field f : this.getClass().getDeclaredFields()) {
 				Class c = f.getType();
 				if (	c == MyAxe.class || c == MyBoots.class || c == MyChestplate.class || 
 						c == MyFood.class || c == MyHelmet.class || c == MyHoe.class || 
 						c == MyItem.class || c == MyLeggings.class || c == MyPickaxe.class || 
-						c == MySpade.class || c == MySword.class || c == MyThrowableItem.class || 
+						c == MyShovel.class || c == MySword.class || c == MyThrowableItem.class || 
 						c == MyTeleporterItem.class) {
 					Item item = (Item)f.get(this);
 					GameRegistry.registerItem(item, item.getUnlocalizedName());

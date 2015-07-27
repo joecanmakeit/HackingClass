@@ -87,8 +87,7 @@ public class MyRecipes {
 				System.out.println("[MYRECIPE]: Symbol '" + sym + "' not set!");
 				output = null;
 			}
-			output = symbols.get(sym);
-			output.stackSize = quantity;
+			output = new ItemStack(symbols.get(sym).getItem(), quantity);
 		}
 		else if (obj instanceof Block) {
 			output = new ItemStack((Block)obj, quantity);
