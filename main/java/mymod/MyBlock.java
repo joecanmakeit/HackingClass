@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -29,12 +29,38 @@ public class MyBlock extends Block {
 	int minQuantity = 1;
 	int maxQuantity = 1;
 	
+	public MyBlock(CreativeTabs tab, MapColor color, boolean needsTool, boolean canBurn) {
+		super(new MyMaterial(color, needsTool, canBurn));
+		this.name = MyMod.getNextName();
+		this.setBlockName(this.name);
+		this.setBlockTextureName(MyMod.modid + ":" + this.name);
+		this.setCreativeTab(tab);
+	}
+	
 	public MyBlock(CreativeTabs tab, Material material) {
 		super(material);
 		this.name = MyMod.getNextName();
 		this.setBlockName(this.name);
 		this.setBlockTextureName(MyMod.modid + ":" + this.name);
 		this.setCreativeTab(tab);
+	}
+	
+	public MyBlock addObjectDropped(Object o) {
+		return addObjectDropped(o, 1, 1);
+	}
+
+	public MyBlock addObjectDropped(Object o, int quantity) {
+		return addObjectDropped(o, quantity, quantity);
+	}
+
+	public MyBlock addObjectDropped(Object o, int minQuantity, int maxQuantity) {
+		if (o instanceof Block) {
+			return addBlockDropped((Block)o, minQuantity, maxQuantity);
+		}
+		else if (o instanceof Item) {
+			return addItemDropped((Item)o, minQuantity, maxQuantity);
+		}
+		return this;
 	}
 	
 	public MyBlock addItemDropped(Item item) {
@@ -89,5 +115,5 @@ public class MyBlock extends Block {
 		}
 		return result;
 	}
-
+	
 }

@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenIceSpike;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -15,21 +14,21 @@ public class MyGenerator implements IWorldGenerator {
 	private void generateSurface(World world, Random random, int i, int j) {
 		
 		// GENERATE BLOCKS IN NORMAL WORLD
-		generateVeinsNormal(world, random, i, j, MyMod.instance.makersOre, 8, 32, 0, 128);
+		generateVeinsNormal(world, random, i, j, MyMod.makersOre, 8, 32, 0, 128);
 		
 	}
 
 	private void generateNether(World world, Random random, int i, int j) {
 
 		// GENERATE BLOCKS IN THE NETHER
-		generateVeinsNether(world, random, i, j, MyMod.instance.makersOre, 8, 32, 0, 128);
+		generateVeinsNether(world, random, i, j, MyMod.makersOre, 8, 32, 0, 128);
 		
 	}
 	
 	private void generateEnd(World world, Random random, int i, int j) {
 		
 		// GENERATE BLOCKS IN THE END
-		generateVeinsEnd(world, random, i, j, MyMod.instance.makersOre, 8, 32, 0, 128);
+		generateVeinsEnd(world, random, i, j, MyMod.makersOre, 8, 32, 0, 128);
 		
 	}
 

@@ -2,7 +2,6 @@ package mymod;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.Item.ToolMaterial;
 
 public class MySword extends ItemSword {
 

@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 public class MyThrowableEntity extends EntityThrowable {
 
 	Random random = new Random();

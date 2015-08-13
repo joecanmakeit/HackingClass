@@ -1,12 +1,8 @@
 package mymod.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.renderer.entity.RenderSnowball;
-import net.minecraft.client.renderer.entity.RenderZombie;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraftforge.client.MinecraftForgeClient;
 import mymod.CommonProxy;
 import mymod.MyMod;
 import mymod.MyThrowableEntity;

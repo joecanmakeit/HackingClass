@@ -52,6 +52,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+@SuppressWarnings("unused")
 public class MyBiomeDecorator extends BiomeDecorator {
 	
     public ArrayList<Ore> oreGenList = new ArrayList<Ore>();

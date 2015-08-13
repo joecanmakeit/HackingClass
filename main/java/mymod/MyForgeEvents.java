@@ -15,6 +15,7 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
+@SuppressWarnings("unused")
 public class MyForgeEvents {
 
 	@SubscribeEvent

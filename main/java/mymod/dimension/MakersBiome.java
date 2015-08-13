@@ -12,8 +12,6 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 
 import java.util.ArrayList;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mymod.MyMod;
 import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -28,12 +26,11 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class MakersBiome extends MyBiomeBase {
 
+	@SuppressWarnings("rawtypes")
 	public MakersBiome(int i, Block base) {
 		super(i, base);
 		MyBiomeDecorator decorator = (MyBiomeDecorator)this.theBiomeDecorator;

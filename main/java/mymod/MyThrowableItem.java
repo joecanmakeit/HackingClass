@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+@SuppressWarnings("unused")
 public class MyThrowableItem extends MyItem {
 	
 	public MyThrowableItem(CreativeTabs tab) {

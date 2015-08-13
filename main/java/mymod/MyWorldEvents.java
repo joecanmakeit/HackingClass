@@ -15,6 +15,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+@SuppressWarnings("unused")
 public class MyWorldEvents {
 
 	int tickCount = 0;

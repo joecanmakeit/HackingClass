@@ -31,6 +31,7 @@ public abstract class MyGenLayer extends GenLayer {
 		return new GenLayer[] {biomes, genlayervoronoizoom};
 	}
 	
+	@SuppressWarnings("unused")
 	public static GenLayer[] makeTheWorld(long seed, BiomeGenBase[] b, int biomeSize) {
 
 		if (biomeSize < 1) biomeSize = 1;

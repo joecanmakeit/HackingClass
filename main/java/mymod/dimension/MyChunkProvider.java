@@ -83,7 +83,8 @@ public class MyChunkProvider implements IChunkProvider {
     double[] field_147425_f;
     double[] field_147426_g;
     int[][] field_73219_j = new int[32][32];
-    private static final String __OBFID = "CL_00000396";
+    @SuppressWarnings("unused")
+	private static final String __OBFID = "CL_00000396";
     public Block baseBlock = Blocks.stone;
 
     {
@@ -210,7 +211,8 @@ public class MyChunkProvider implements IChunkProvider {
         }
     }
 
-    public void replaceBlocksForBiome(int p_147422_1_, int p_147422_2_, Block[] p_147422_3_, byte[] p_147422_4_, BiomeGenBase[] p_147422_5_)
+    @SuppressWarnings("deprecation")
+	public void replaceBlocksForBiome(int p_147422_1_, int p_147422_2_, Block[] p_147422_3_, byte[] p_147422_4_, BiomeGenBase[] p_147422_5_)
     {
         ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, p_147422_1_, p_147422_2_, p_147422_3_, p_147422_4_, p_147422_5_);
         MinecraftForge.EVENT_BUS.post(event);
@@ -272,7 +274,8 @@ public class MyChunkProvider implements IChunkProvider {
         return chunk;
     }
 
-    private void func_147423_a(int p_147423_1_, int p_147423_2_, int p_147423_3_)
+    @SuppressWarnings("unused")
+	private void func_147423_a(int p_147423_1_, int p_147423_2_, int p_147423_3_)
     {
         double d0 = 684.412D;
         double d1 = 684.412D;
@@ -535,7 +538,8 @@ public class MyChunkProvider implements IChunkProvider {
     /**
      * Returns a list of creatures of the specified type that can spawn at the given location.
      */
-    public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
+    @SuppressWarnings("rawtypes")
+	public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
     {
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);
         return par1EnumCreatureType == EnumCreatureType.monster && this.scatteredFeatureGenerator.func_143030_a(par2, par3, par4) ? this.scatteredFeatureGenerator.getScatteredFeatureSpawnList() : biomegenbase.getSpawnableList(par1EnumCreatureType);

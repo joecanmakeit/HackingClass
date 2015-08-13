@@ -34,7 +34,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class MyBiomeBase extends BiomeGenBase {
@@ -49,6 +48,7 @@ public class MyBiomeBase extends BiomeGenBase {
 		this(p_i1971_1_, Blocks.stone);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public MyBiomeBase(int i, Block base) {
 		super(i);
 		baseBlock = base;
@@ -122,7 +122,6 @@ public class MyBiomeBase extends BiomeGenBase {
 	
 	public void genTerrainBlocks(World var1, Random var2, Block[] var3, byte[] var4, int var5, int var6, double var7) 
     {
-        boolean flag = true;
         Block block = this.topBlock;
         byte b0 = (byte)(this.field_150604_aj & 255);
         Block block1 = this.fillerBlock;
@@ -216,10 +215,12 @@ public class MyBiomeBase extends BiomeGenBase {
         }
     }
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void addCreatureSpawn(Class creatureClass, int freq, int minGroupSize, int maxGroupSize) {
 		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(creatureClass, freq, minGroupSize, maxGroupSize));
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void addMonsterSpawn(Class monsterClass, int freq, int minGroupSize, int maxGroupSize) {
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(monsterClass, freq, minGroupSize, maxGroupSize));
 	}

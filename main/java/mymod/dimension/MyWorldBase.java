@@ -17,6 +17,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.ForgeHooksClient;
 
+@SuppressWarnings("unused")
 public abstract class MyWorldBase extends WorldProvider {
 
 	public void registerWorldChunkManager() {
