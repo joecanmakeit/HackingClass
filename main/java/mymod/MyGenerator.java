@@ -13,8 +13,8 @@ public class MyGenerator implements IWorldGenerator {
 
 	private void generateSurface(World world, Random random, int i, int j) {
 		
-		// GENERATE BLOCKS IN NORMAL WORLD
-		generateVeinsNormal(world, random, i, j, MyMod.makersOre, 8, 32, 0, 128);
+		// GENERATE BLOCKS IN OVERWORLD
+		generateVeinsOverworld(world, random, i, j, MyMod.makersOre, 8, 32, 0, 128);
 		
 	}
 
@@ -48,7 +48,7 @@ public class MyGenerator implements IWorldGenerator {
 		}
 	}
 
-	private void generateVeinsNormal(World world, Random random, int i, int j, Block block, int size, int frequency, int minLevel, int maxLevel) {
+	private void generateVeinsOverworld(World world, Random random, int i, int j, Block block, int size, int frequency, int minLevel, int maxLevel) {
 		for(int k = 0; k < frequency; k++) {
 			int firstBlockXCoord = i + random.nextInt(16);
 			int firstBlockYCoord = random.nextInt(maxLevel-minLevel)+minLevel;
