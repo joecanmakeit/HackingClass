@@ -1,17 +1,28 @@
 package mymod;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityEgg;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "unchecked", "rawtypes"})
 public class MyThrowableItem extends MyItem {
 	
-	public MyThrowableItem(CreativeTabs tab) {
+	public Class entityClass;
+	
+	public MyThrowableItem(CreativeTabs tab, Class entity) {
 		super(tab);
+		this.entityClass = entity;
+		if (!MyMod.throwableClasses.contains(entity)) {
+			MyMod.throwableClasses.add(entity);
+		}
 	}
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
@@ -25,7 +36,19 @@ public class MyThrowableItem extends MyItem {
 
         if (!par2World.isRemote)
         {
-            par2World.spawnEntityInWorld(new MyThrowableEntity(par2World, par3EntityPlayer));
+        	Constructor<? extends MyThrowableEntity>[] ctors = entityClass.getDeclaredConstructors();
+        	Constructor<? extends MyThrowableEntity> ctor = null;
+        	for (int i = 0; i < ctors.length; i++) {
+        		ctor = ctors[i];
+        		if (ctor.getParameterTypes().length == 2) break;
+        	}
+        	try {
+				par2World.spawnEntityInWorld(ctor.newInstance(par2World, par3EntityPlayer));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+            //par2World.spawnEntityInWorld(new MyThrowableEntity(par2World, par3EntityPlayer));
         }
 
         return par1ItemStack;

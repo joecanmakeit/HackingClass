@@ -30,10 +30,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 @Mod(modid="mymod", name="My Mod", version="1.0.0")
 public class MyMod {
-	public static int varCount = 6;
+	public static ArrayList<Class> throwableClasses = new ArrayList<Class>();
+	public static int varCount = 7;
 	public static int armorCount = 5;
 	public static int biomeID = 50;
 	public static String modid = "mymod";
@@ -77,11 +78,11 @@ public class MyMod {
 	public static MyBoots makersBoots = new MyBoots(makersArmor);
 	
 	// NEW THROWABLE
-	public static MyThrowableItem makersThrowable = new MyThrowableItem(CreativeTabs.tabMisc);
+	public static MyThrowableItem makersThrowable = new MyThrowableItem(CreativeTabs.tabMisc, MakersThrowableEntity.class);
 	
 	// BIOMES AND DIMENSIONS
-	public static MyTeleporterItem tpHome = new MyTeleporterItem(0);
 	public static int makersWorldID = 2;
+	public static MyTeleporterItem tpHome = new MyTeleporterItem(0);
 	public static MyTeleporterItem tpMakers = new MyTeleporterItem(makersWorldID);
 	public static MakersBiome theMakersBiome = new MakersBiome(biomeID++, Blocks.stone);
 	
@@ -106,7 +107,7 @@ public class MyMod {
 		// BUILD DIMENSIONS
 		buildDimension(makersWorldID, MakersWorld.class);
 		
-		// REGISTRATION
+		// FINAL REGISTRATION
 		registerEverything();
 	}
 
@@ -165,14 +166,21 @@ public class MyMod {
 		return f.getName();
 	}
 	
+	public void registerEntity(Class c) {
+		int id = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(c, c.getSimpleName(), id);
+		EntityRegistry.registerModEntity(c, c.getSimpleName(), id, this, 80, 1, true);
+	}
+	
 	private void registerEverything() {
 		MinecraftForge.EVENT_BUS.register(new MyForgeEvents());
 		FMLCommonHandler.instance().bus().register(new MyWorldEvents());
-		EntityRegistry.registerModEntity(MyThrowableEntity.class, "MyThrowableEntity", EntityRegistry.findGlobalUniqueEntityId(), this, 80, 1, true);
+		for (Class c : throwableClasses) {
+			registerEntity(c);
+		}
 		GameRegistry.registerWorldGenerator(new MyGenerator(), 1000);
 		try {
 			for (Field f : this.getClass().getDeclaredFields()) {
-				@SuppressWarnings("rawtypes")
 				Class c = f.getType();
 				if (	c == MyAxe.class || c == MyBoots.class || c == MyChestplate.class || 
 						c == MyFood.class || c == MyHelmet.class || c == MyHoe.class || 
