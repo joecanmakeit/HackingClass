@@ -1,6 +1,7 @@
 package mymod;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import mymod.dimension.MakersBiome;
@@ -15,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.potion.Potion;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -52,13 +54,14 @@ public class MyMod {
 	//  newBlockTexture		HIGHLIGHT ONE OF THE TEXTURE NAMES TO THE RIGHT,
 	//  newArmorTexture		THEN PRESS CTRL + SHIFT + R
 	
-	// MATERIALS
+	// NEW MATERIALS
 	public static ToolMaterial makersTool = addToolMaterial(2, 500, 7.0F, 2.0F, 23);
 	public static ArmorMaterial makersArmor = addArmorMaterial(18, new int[] {3, 7, 6, 3}, 23);
 	
 	// NEW ITEMS
 	public static MyItem makersIngot = new MyItem(CreativeTabs.tabMaterials);
 	public static MyItem makersMineral = new MyItem(CreativeTabs.tabMaterials);
+	public static MyFood makersChow = new MyFood(4, 0.8F, true);
 	
 	// NEW BLOCKS
 	public static MyBlock makersOre = new MyBlock(CreativeTabs.tabBlock, MapColor.blueColor, true, false);
@@ -103,6 +106,8 @@ public class MyMod {
 		makersOre.addItemDropped(makersMineral,2,4);
 		
 		// POTION EFFECTS FOR FOOD
+		makersChow.addPotionEffect(Potion.moveSpeed, 15, 2, 1.0F);
+		makersChow.addPotionEffect(Potion.regeneration, 3, 3, 0.3F);
 		
 		// BUILD DIMENSIONS
 		buildDimension(makersWorldID, MakersWorld.class);
@@ -114,7 +119,7 @@ public class MyMod {
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 		proxy.registerRenderers();
-				
+			
 		// CRAFTING AND SMELTING RECIPES
 		MyRecipes.setSymbol("i", makersIngot);
 		MyRecipes.setSymbol("m", makersMineral);
@@ -155,7 +160,6 @@ public class MyMod {
 		Field f;
 		while (true) {
 			f = MyMod.class.getDeclaredFields()[MyMod.varCount++];
-			@SuppressWarnings("rawtypes")
 			Class c = f.getType();
 			if (	c == MyAxe.class || c == MyBoots.class || c == MyChestplate.class || 
 					c == MyFood.class || c == MyHelmet.class || c == MyHoe.class || 
