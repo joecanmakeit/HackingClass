@@ -103,7 +103,8 @@ public class MyMod {
 		makersOre.setHarvestLevel("pickaxe", 1);
 		makersOre.setResistance(15.0F);
 		makersOre.setStepSound(Block.soundTypeStone);
-		makersOre.addItemDropped(makersMineral,2,4);
+		makersOre.addItemDropped(makersMineral, 2, 4);
+		makersOre.addItemDropped(Items.diamond, 0.1F);
 		
 		// POTION EFFECTS FOR FOOD
 		makersChow.addPotionEffect(Potion.moveSpeed, 15, 2, 1.0F);
